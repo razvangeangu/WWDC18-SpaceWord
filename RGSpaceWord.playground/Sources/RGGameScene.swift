@@ -509,7 +509,7 @@ public class RGGameScene: SKScene {
                     // React to gravity
                     node.physicsBody!.affectedByGravity = true
                     node.physicsBody!.applyImpulse(CGVector(dx: -10, dy: 0))
-                    node.physicsBody!.applyAngularImpulse(1)
+                    node.physicsBody!.applyAngularImpulse(0.1)
                 } else {
                     
                     // Move the nodes to the left by 60 points
