@@ -314,7 +314,7 @@ public class RGGameScene: SKScene {
         if let slicePlayer = slicePlayer {
             
             // If slice was executed
-            if delta.y > 20 || delta.y < -20 {
+            if delta.y > 10 || delta.y < -10 {
                 
                 // Play a slice sound
                 slicePlayer.play()
@@ -326,19 +326,19 @@ public class RGGameScene: SKScene {
         
         // If the current space index exists
         if let currentSpaceIndex = spaceIndices.first {
-            
             if touchedNodes.contains(where: { (node) -> Bool in
                 guard let nodeName = node.name else { return false }
                 
                 if let nodeIndex = Int(nodeName) {
-                    if nodeIndex == currentSpaceIndex - 1 || nodeIndex == currentSpaceIndex + 1 {
+                    
+                    if nodeIndex >= currentSpaceIndex - 2 && nodeIndex <= currentSpaceIndex + 2 {
                         return true
                     }
                 }
                 
                 return false
             }) {
-                if delta.y > 20 || delta.y < -20 {
+                if delta.y > 10 || delta.y < -10 {
                     // Add a space to the nodes to all the nodes to the current space index
                     addSpace(at: currentSpaceIndex)
                 
@@ -639,11 +639,15 @@ public class RGGameScene: SKScene {
     /**
      A function to set the game phrase.
      
-     - parameter phrase: The phrase of the game.
+     - parameter phrase: The phrase of the game which must contain spaces or new lines.
      */
     public func setGamePhrase(phrase: String) {
         if !phrase.isEmpty {
-            self.phrase = phrase
+            if let _ = phrase.rangeOfCharacter(from: CharacterSet.whitespacesAndNewlines), let _ = phrase.rangeOfCharacter(from: CharacterSet.alphanumerics) {
+                self.phrase = phrase
+            } else {
+                print("The phrase must contain spaces or new lines and alphanumeric characters.")
+            }
         }
     }
     

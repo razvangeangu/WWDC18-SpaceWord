@@ -27,12 +27,12 @@ sceneView.presentScene(gameScene)
 //#-end-hidden-code
 /*: Editing part 1
  
- If you don't change the phrase, the game will start with a quote by **Steve Jobs**.
+ If you don't change the phrase, the game will start with a quote by **Steve Jobs**. Make sure you enter more than one space and enough letters.
  
  *With great phrases comes great scores!*
  
  */
-gameScene.setGamePhrase(phrase: /*#-editable-code Write your own phrase*/""/*#-end-editable-code*/)
+gameScene.setGamePhrase(phrase: /*#-editable-code Write your own phrase*/"Here is my phrase"/*#-end-editable-code*/)
 
 /*: Editing part 2
  
