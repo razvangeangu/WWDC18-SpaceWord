@@ -246,6 +246,11 @@ public class RGGameScene: SKScene {
      */
     private var shouldReactToGravity = false
     
+    /**
+     This generator adds haptic feedback when slice is successful.
+     */
+    private let generator = UIImpactFeedbackGenerator(style: .medium)
+    
     public override func didMove(to view: SKView) {
         
         // Remove the score label from the parent as we do not needed on the first view
@@ -339,6 +344,9 @@ public class RGGameScene: SKScene {
                 
                     // Remove the first space index that has been found.
                     spaceIndices.removeFirst()
+                    
+                    // Add haptic feedback
+                    generator.impactOccurred()
                 }
             } else if touchedNodes.contains(where: { (node) -> Bool in
                 guard let _ = node as? SKLabelNode else { return false }
